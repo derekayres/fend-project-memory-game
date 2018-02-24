@@ -1,7 +1,24 @@
 /*
  * Create a list that holds all of your cards
  */
-
+const arrayClassNames = [
+  "fa fa-diamond",
+  "fa fa-diamond",
+  "fa fa-paper-plane-o",
+  "fa fa-paper-plane-o",
+  "fa fa-anchor",
+  "fa fa-anchor",
+  "fa fa-bolt",
+  "fa fa-bolt",
+  "fa fa-cube",
+  "fa fa-cube",
+  "fa fa-leaf",
+  "fa fa-leaf",
+  "fa fa-bicycle",
+  "fa fa-bicycle",
+  "fa fa-bomb",
+  "fa fa-bomb"
+]
 
 /*
  * Display the cards on the page
@@ -25,6 +42,21 @@ function shuffle(array) {
     return array;
 }
 
+const shuffledArray = shuffle(arrayClassNames);
+
+function makeCards(shuffledArray) {
+  for (let x = 0; x < shuffledArray.length; x++ ){
+    const newCard = document.createElement('li');
+    const newIcon = document.createElement('i');
+    newCard.classList.add('card');
+    newIcon.classList.add('fa');
+    newIcon.classList.add(shuffledArray[x]);
+    const newDeck = document.querySelector('.deck');
+    newDeck.appendChild(newCard);
+    newCard.appendChild(newIcon);
+  }
+};
+makeCards(shuffledArray);
 
 /*
  * set up the event listener for a card. If a card is clicked:
