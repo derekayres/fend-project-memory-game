@@ -43,20 +43,48 @@ function shuffle(array) {
 }
 
 const shuffledArray = shuffle(arrayClassNames);
+const deck = document.querySelector(".deck");
+const newDeck = document.querySelector('.deck');
+let cardOne = null;
 
 function makeCards(shuffledArray) {
+  deck.innerHTML="";
   for (let x = 0; x < shuffledArray.length; x++ ){
     const newCard = document.createElement('li');
     const newIcon = document.createElement('i');
     newCard.classList.add('card');
     newIcon.classList.add('fa');
-    newIcon.classList.add(shuffledArray[x]);
+    newIcon.classList = shuffledArray[x];
     const newDeck = document.querySelector('.deck');
     newDeck.appendChild(newCard);
     newCard.appendChild(newIcon);
+
+    newCard.addEventListener('click', function () {
+    newCard.classList.add('open');
+    newCard.classList.add('show');
+    cardOne = this;
+      console.log ('It worked.')
+      console.dir(this)
+    });
   }
 };
 makeCards(shuffledArray);
+
+
+
+function flippedNewCards (a,b) {
+  const A = newIcon.innerHTML (a);
+  const B = newIcon.innerHTML (b);
+
+  if (A = B) {
+    A.classList.add (matched);
+    B.classList.add (matched);
+  }
+}
+
+
+
+
 
 /*
  * set up the event listener for a card. If a card is clicked:
