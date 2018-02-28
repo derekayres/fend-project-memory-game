@@ -58,29 +58,31 @@ function makeCards(shuffledArray) {
     const newDeck = document.querySelector('.deck');
     newDeck.appendChild(newCard);
     newCard.appendChild(newIcon);
-
-    newCard.addEventListener('click', function () {
-    newCard.classList.add('open');
-    newCard.classList.add('show');
-    cardOne = this;
-      console.log ('It worked.')
-      console.dir(this)
-    });
+    newCard.addEventListener('click', checkCard)
   }
 };
+
+function checkCard() {
+    this.classList.add('open');
+    this.classList.add('show');
+    //cardOne = this;
+    if (cardOne === null) {
+        cardOne = this;
+    }
+    else if (cardOne.firstChild.className === this.firstChild.className){
+      this.classList.add('match');
+      this.classList.remove('open');
+      this.classList.remove('show');
+      cardOne.classList.add('match');
+      cardOne.classList.remove('open');
+      cardOne.classList.remove('show');
+    }
+
+      console.log ('It worked.')
+      console.dir(this)
+    }
+
 makeCards(shuffledArray);
-
-
-
-function flippedNewCards (a,b) {
-  const A = newIcon.innerHTML (a);
-  const B = newIcon.innerHTML (b);
-
-  if (A = B) {
-    A.classList.add (matched);
-    B.classList.add (matched);
-  }
-}
 
 
 
