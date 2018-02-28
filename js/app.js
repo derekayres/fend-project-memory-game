@@ -58,30 +58,35 @@ function makeCards(shuffledArray) {
     const newDeck = document.querySelector('.deck');
     newDeck.appendChild(newCard);
     newCard.appendChild(newIcon);
-    newCard.addEventListener('click', checkCard)
+    newCard.addEventListener('click', checkCard);
   }
 };
 
 function checkCard() {
-    this.classList.add('open');
-    this.classList.add('show');
+    newCard.removeEventListener('click', checkCard);
+    const clickedCard = this
+    clickedCard.classList.add('open');
+    clickedCard.classList.add('show');
     //cardOne = this;
     if (cardOne === null) {
         cardOne = this;
     }
     else if (cardOne.firstChild.className === this.firstChild.className){
-      this.classList.add('match');
-      this.classList.remove('open');
-      this.classList.remove('show');
+      clickedCard.classList.add('match');
+      clickedCard.classList.remove('open');
+      clickedCard.classList.remove('show');
       cardOne.classList.add('match');
       cardOne.classList.remove('open');
       cardOne.classList.remove('show');
     }
     else {setTimeout(function() {
-      this.classList.remove('open');
-      this.classList.remove('show');
+      clickedCard.classList.remove('open');
+      clickedCard.classList.remove('show');
+      clickedCard.addEventListener('click', checkCard);
       cardOne.classList.remove('open');
       cardOne.classList.remove('show');
+      cardOne.addEventListener('click', checkCard);
+      cardOne = null;
       }, 3000);
     }
       console.log ('It worked.')
