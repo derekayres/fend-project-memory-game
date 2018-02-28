@@ -77,7 +77,13 @@ function checkCard() {
       cardOne.classList.remove('open');
       cardOne.classList.remove('show');
     }
-
+    else {setTimeout(function() {
+      this.classList.remove('open');
+      this.classList.remove('show');
+      cardOne.classList.remove('open');
+      cardOne.classList.remove('show');
+      }, 3000);
+    }
       console.log ('It worked.')
       console.dir(this)
     }
