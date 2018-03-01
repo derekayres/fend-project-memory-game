@@ -42,7 +42,7 @@ function add() {
 function timer() {
     t = setTimeout(add, 1000);
 }
-start.onclick = timer;
+//start.onclick = timer;
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -70,6 +70,7 @@ const newDeck = document.querySelector('.deck');
 let cardOne = null;
 
 
+
 function makeCards(shuffledArray) {
   deck.innerHTML="";
   for (let x = 0; x < shuffledArray.length; x++ ){
@@ -84,8 +85,12 @@ function makeCards(shuffledArray) {
     newCard.addEventListener('click', checkCard);
   }
 };
-
+let timerRunning = false
 function checkCard() {
+    if (timerRunning = false) {
+    timer();
+    timerRunning = true;
+    }
     const clickedCard = this
     clickedCard.removeEventListener('click', checkCard);
     clickedCard.classList.add('open');
