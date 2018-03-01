@@ -87,10 +87,10 @@ function makeCards(shuffledArray) {
 };
 let timerRunning = false
 function checkCard() {
-    if (timerRunning = false) {
-    timer();
-    timerRunning = true;
-    }
+    //if (timerRunning = false) {
+    //timer();
+    //timerRunning = true;
+    //}
     const clickedCard = this
     clickedCard.removeEventListener('click', checkCard);
     clickedCard.classList.add('open');
@@ -116,9 +116,19 @@ function checkCard() {
       cardOne.addEventListener('click', checkCard);
       cardOne = null;
     }, 2000);
+    let matchedCount = 0;
+    function matchedPairs(){
+      count += 1;
+    }
+    if (matchedCount = 8){
+      function() {
+      clearTimeout(t);
+      }
+    }
     }
       console.log ('It worked.')
       console.dir(this)
+      console.log('Total matches' + matchedCount)
     }
 
 makeCards(shuffledArray);
