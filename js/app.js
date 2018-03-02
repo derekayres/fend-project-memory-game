@@ -20,6 +20,7 @@ const arrayClassNames = [
   "fa fa-bomb"
 ]
 
+//calling HTML for timer
 var h2 = document.getElementsByTagName('h2')[0],
 start = document.getElementById('start'),
 //stop = document.getElementById('stop'),
@@ -84,19 +85,20 @@ function makeCards(shuffledArray) {
     newCard.appendChild(newIcon);
     newCard.addEventListener('click', checkCard);
   }
-};
+}
 let timerRunning = false;
 let matchedCount = 0;
+
 function checkCard() {
-    //if (timerRunning = false) {
-    //timer();
-    //timerRunning = true;
-    //}
+    if (timerRunning === false) {
+    timer();
+    timerRunning = true;
+    }
     const clickedCard = this
     clickedCard.removeEventListener('click', checkCard);
     clickedCard.classList.add('open');
     clickedCard.classList.add('show');
-    //cardOne = this;
+
     if (cardOne === null) {
         cardOne = this;
     }
@@ -107,29 +109,25 @@ function checkCard() {
       cardOne.classList.add('match');
       cardOne.classList.remove('open');
       cardOne.classList.remove('show');
+      matchedCount += 1;
+      console.log('Total matches ' + matchedCount)
     }
     else {setTimeout(function() {
+      clickedCard.addEventListener('click', checkCard);
       clickedCard.classList.remove('open');
       clickedCard.classList.remove('show');
-      clickedCard.addEventListener('click', checkCard);
+      cardOne.addEventListener('click', checkCard);
       cardOne.classList.remove('open');
       cardOne.classList.remove('show');
-      cardOne.addEventListener('click', checkCard);
       cardOne = null;
-    }, 2000);
-    //let matchedCount = 0;
-    function matchedPairs(){
-      matchedCount += 1;
+      }, 2000);
     }
-    if (matchedCount = 8){
+    if (matchedCount === 8){
       clearTimeout(t);
       }
-    }
-    }
+}
       console.log ('It worked.')
       console.dir(this)
-      console.log('Total matches ' + matchedCount)
-
 
 makeCards(shuffledArray);
 
