@@ -107,9 +107,10 @@ function checkCard() {
 
     if (!cardOne) {
       cardOne = this;
-    } else if (!cardTwo === null) {
+      return false;
+    } else if (!cardTwo) {
       cardTwo = this;
-    }
+
 
     if (cardOne.firstChild.className === cardTwo.firstChild.className) {
         cardTwo.classList.add('match');
@@ -135,6 +136,7 @@ function checkCard() {
             cardTwo = null;
         }, 2000);
     }
+  }
 }
 console.log('It worked.')
 console.dir(this)
