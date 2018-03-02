@@ -2,30 +2,33 @@
  * Create a list that holds all of your cards
  */
 const arrayClassNames = [
-  "fa fa-diamond",
-  "fa fa-diamond",
-  "fa fa-paper-plane-o",
-  "fa fa-paper-plane-o",
-  "fa fa-anchor",
-  "fa fa-anchor",
-  "fa fa-bolt",
-  "fa fa-bolt",
-  "fa fa-cube",
-  "fa fa-cube",
-  "fa fa-leaf",
-  "fa fa-leaf",
-  "fa fa-bicycle",
-  "fa fa-bicycle",
-  "fa fa-bomb",
-  "fa fa-bomb"
+    "fa fa-diamond",
+    "fa fa-diamond",
+    "fa fa-paper-plane-o",
+    "fa fa-paper-plane-o",
+    "fa fa-anchor",
+    "fa fa-anchor",
+    "fa fa-bolt",
+    "fa fa-bolt",
+    "fa fa-cube",
+    "fa fa-cube",
+    "fa fa-leaf",
+    "fa fa-leaf",
+    "fa fa-bicycle",
+    "fa fa-bicycle",
+    "fa fa-bomb",
+    "fa fa-bomb"
 ]
 
 //calling HTML for timer
 var h2 = document.getElementsByTagName('h2')[0],
-start = document.getElementById('start'),
-//stop = document.getElementById('stop'),
-//clear = document.getElementById('clear'),
-seconds = 0, minutes = 0, hours = 0, t;
+    start = document.getElementById('start'),
+    //stop = document.getElementById('stop'),
+    //clear = document.getElementById('clear'),
+    seconds = 0,
+    minutes = 0,
+    hours = 0,
+    t;
 
 function add() {
     seconds++;
@@ -40,6 +43,7 @@ function add() {
     h2.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
     timer();
 }
+
 function timer() {
     t = setTimeout(add, 1000);
 }
@@ -53,7 +57,8 @@ function timer() {
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
+    var currentIndex = array.length,
+        temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
@@ -69,65 +74,70 @@ const shuffledArray = shuffle(arrayClassNames);
 const deck = document.querySelector(".deck");
 const newDeck = document.querySelector('.deck');
 let cardOne = null;
+let cardTwo = null;
 
 
 
 function makeCards(shuffledArray) {
-  deck.innerHTML="";
-  for (let x = 0; x < shuffledArray.length; x++ ){
-    const newCard = document.createElement('li');
-    const newIcon = document.createElement('i');
-    newCard.classList.add('card');
-    newIcon.classList.add('fa');
-    newIcon.classList = shuffledArray[x];
-    const newDeck = document.querySelector('.deck');
-    newDeck.appendChild(newCard);
-    newCard.appendChild(newIcon);
-    newCard.addEventListener('click', checkCard);
-  }
+    deck.innerHTML = "";
+    for (let x = 0; x < shuffledArray.length; x++) {
+        const newCard = document.createElement('li');
+        const newIcon = document.createElement('i');
+        newCard.classList.add('card');
+        newIcon.classList.add('fa');
+        newIcon.classList = shuffledArray[x];
+        const newDeck = document.querySelector('.deck');
+        newDeck.appendChild(newCard);
+        newCard.appendChild(newIcon);
+        newCard.addEventListener('click', checkCard);
+    }
 }
 let timerRunning = false;
 let matchedCount = 0;
 
 function checkCard() {
     if (timerRunning === false) {
-    timer();
-    timerRunning = true;
+        timer();
+        timerRunning = true;
     }
     const clickedCard = this
     clickedCard.removeEventListener('click', checkCard);
     clickedCard.classList.add('open');
     clickedCard.classList.add('show');
 
-    if (cardOne === null) {
-        cardOne = this;
+    if (!cardOne) {
+      cardOne = this;
+    } else if (!cardTwo === null) {
+      cardTwo = this;
     }
-    else if (cardOne.firstChild.className === this.firstChild.className){
-      clickedCard.classList.add('match');
-      clickedCard.classList.remove('open');
-      clickedCard.classList.remove('show');
-      cardOne.classList.add('match');
-      cardOne.classList.remove('open');
-      cardOne.classList.remove('show');
-      matchedCount += 1;
-      console.log('Total matches ' + matchedCount)
+
+    if (cardOne.firstChild.className === cardTwo.firstChild.className) {
+        cardTwo.classList.add('match');
+        cardTwo.classList.remove('open');
+        cardTwo.classList.remove('show');
+        cardOne.classList.add('match');
+        cardOne.classList.remove('open');
+        cardOne.classList.remove('show');
+        matchedCount += 1;
+        if (matchedCount === 8) {
+            clearTimeout(t);
+        }
+        console.log('Total matches ' + matchedCount)
+    } else {
+        setTimeout(function() {
+            cardTwo.addEventListener('click', checkCard);
+            cardTwo.classList.remove('open');
+            cardTwo.classList.remove('show');
+            cardOne.addEventListener('click', checkCard);
+            cardOne.classList.remove('open');
+            cardOne.classList.remove('show');
+            cardOne = null;
+            cardTwo = null;
+        }, 2000);
     }
-    else {setTimeout(function() {
-      clickedCard.addEventListener('click', checkCard);
-      clickedCard.classList.remove('open');
-      clickedCard.classList.remove('show');
-      cardOne.addEventListener('click', checkCard);
-      cardOne.classList.remove('open');
-      cardOne.classList.remove('show');
-      cardOne = null;
-      }, 2000);
-    }
-    if (matchedCount === 8){
-      clearTimeout(t);
-      }
 }
-      console.log ('It worked.')
-      console.dir(this)
+console.log('It worked.')
+console.dir(this)
 
 makeCards(shuffledArray);
 
