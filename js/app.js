@@ -22,9 +22,6 @@ const arrayClassNames = [
 
 //calling HTML for timer
 var h2 = document.getElementsByTagName('h2')[0],
-    start = document.getElementById('start'),
-    //stop = document.getElementById('stop'),
-    //clear = document.getElementById('clear'),
     seconds = 0,
     minutes = 0,
     hours = 0,
@@ -47,7 +44,9 @@ function add() {
 function timer() {
     t = setTimeout(add, 1000);
 }
-//start.onclick = timer;
+
+
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -76,8 +75,6 @@ const newDeck = document.querySelector('.deck');
 let cardOne = null;
 let cardTwo = null;
 
-
-
 function makeCards(shuffledArray) {
     deck.innerHTML = "";
     for (let x = 0; x < shuffledArray.length; x++) {
@@ -94,24 +91,30 @@ function makeCards(shuffledArray) {
 }
 let timerRunning = false;
 let matchedCount = 0;
+let moveCount = 0;
+//let moves = document.getElementsByClassName('moves');
 
 function checkCard() {
     if (timerRunning === false) {
         timer();
         timerRunning = true;
     }
-    const clickedCard = this
-    clickedCard.removeEventListener('click', checkCard);
-    clickedCard.classList.add('open');
-    clickedCard.classList.add('show');
 
     if (!cardOne) {
       cardOne = this;
+      cardOne.removeEventListener('click', checkCard);
+      cardOne.classList.add('open');
+      cardOne.classList.add('show');
+      moveCount += 0.5;
       return false;
     } else if (!cardTwo) {
       cardTwo = this;
-
-
+      cardTwo.removeEventListener('click', checkCard);
+      cardTwo.classList.add('open');
+      cardTwo.classList.add('show');
+      moveCount += 0.5;
+      console.log('Total moves ' + moveCount);
+      document.getElementByClassName('moves').innerHTML = moveCount;
     if (cardOne.firstChild.className === cardTwo.firstChild.className) {
         cardTwo.classList.add('match');
         cardTwo.classList.remove('open');
@@ -119,6 +122,8 @@ function checkCard() {
         cardOne.classList.add('match');
         cardOne.classList.remove('open');
         cardOne.classList.remove('show');
+        cardOne = null;
+        cardTwo = null;
         matchedCount += 1;
         if (matchedCount === 8) {
             clearTimeout(t);
