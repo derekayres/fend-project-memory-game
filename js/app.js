@@ -114,7 +114,26 @@ function checkCard() {
       cardTwo.classList.add('show');
       moveCount += 0.5;
       console.log('Total moves ' + moveCount);
-      document.getElementByClassName('moves').innerHTML = moveCount;
+      document.getElementsByTagName('span')[0].innerHTML = moveCount;
+    if (moveCount > 5 && moveCount < 10) {
+       document.getElementsByClassName('fa fa-star')[4].style.visibility='hidden';
+     } else if (moveCount > 9 && moveCount < 15) {
+        document.getElementsByClassName('fa fa-star')[4].style.visibility='hidden';
+        document.getElementsByClassName('fa fa-star')[3].style.visibility='hidden';
+      } else if (moveCount > 14 && moveCount < 20) {
+        document.getElementsByClassName('fa fa-star')[4].style.visibility='hidden';
+        document.getElementsByClassName('fa fa-star')[3].style.visibility='hidden';
+        document.getElementsByClassName('fa fa-star')[2].style.visibility='hidden';
+      } else if (moveCount > 19 && moveCount < 25) {
+        document.getElementsByClassName('fa fa-star')[4].style.visibility='hidden';
+        document.getElementsByClassName('fa fa-star')[3].style.visibility='hidden';
+        document.getElementsByClassName('fa fa-star')[2].style.visibility='hidden';
+        document.getElementsByClassName('fa fa-star')[1].style.visibility='hidden';
+      }
+
+
+
+
     if (cardOne.firstChild.className === cardTwo.firstChild.className) {
         cardTwo.classList.add('match');
         cardTwo.classList.remove('open');
@@ -127,6 +146,7 @@ function checkCard() {
         matchedCount += 1;
         if (matchedCount === 8) {
             clearTimeout(t);
+            alert ("Bitch, you won!")
         }
         console.log('Total matches ' + matchedCount)
     } else {
@@ -153,7 +173,6 @@ makeCards(shuffledArray);
 stop.onclick = function() {
     clearTimeout(t);
 }
-
 Clear button
 clear.onclick = function() {
     h1.textContent = "00:00:00";
