@@ -98,6 +98,8 @@ function checkCard() {
     if (timerRunning === false) {
         timer();
         timerRunning = true;
+        var music = document.getElementById("music");
+        music.currentTime = 180;
     }
 
     if (!cardOne) {
@@ -115,16 +117,16 @@ function checkCard() {
       moveCount += 0.5;
       console.log('Total moves ' + moveCount);
       document.getElementsByTagName('span')[0].innerHTML = moveCount;
-    if (moveCount > 5 && moveCount < 10) {
+    if (moveCount > 8 && moveCount < 13) {
        document.getElementsByClassName('fa fa-star')[4].style.visibility='hidden';
-     } else if (moveCount > 9 && moveCount < 15) {
+     } else if (moveCount > 12 && moveCount < 17) {
         document.getElementsByClassName('fa fa-star')[4].style.visibility='hidden';
         document.getElementsByClassName('fa fa-star')[3].style.visibility='hidden';
-      } else if (moveCount > 14 && moveCount < 20) {
+      } else if (moveCount > 16 && moveCount < 21) {
         document.getElementsByClassName('fa fa-star')[4].style.visibility='hidden';
         document.getElementsByClassName('fa fa-star')[3].style.visibility='hidden';
         document.getElementsByClassName('fa fa-star')[2].style.visibility='hidden';
-      } else if (moveCount > 19 && moveCount < 25) {
+      } else if (moveCount > 20 && moveCount < 25) {
         document.getElementsByClassName('fa fa-star')[4].style.visibility='hidden';
         document.getElementsByClassName('fa fa-star')[3].style.visibility='hidden';
         document.getElementsByClassName('fa fa-star')[2].style.visibility='hidden';
@@ -144,9 +146,12 @@ function checkCard() {
         cardOne = null;
         cardTwo = null;
         matchedCount += 1;
-        if (matchedCount === 8) {
+        if (matchedCount === 2) {
             clearTimeout(t);
-            alert ("Bitch, you won!")
+            $('#No1modal').modal('show');
+            alert ("You won!")
+            //var music = document.getElementById("music");
+            //music.currentTime = 410;
         }
         console.log('Total matches ' + matchedCount)
     } else {
