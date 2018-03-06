@@ -1,3 +1,8 @@
+@font-face {
+  font-family: kashmirimport;
+  src:url("kashmir.ttf");
+}
+
 html {
     box-sizing: border-box;
 }
@@ -17,8 +22,8 @@ body {
 }
 
 body {
-    background: #ffffff url('../img/geometry2.png'); /* Background pattern from Subtle Patterns */
-    font-family: 'Coda', cursive;
+    background: #ffffff url('../img/glyphs.png'); /* Background pattern from Subtle Patterns */
+    font-family: 'kashmirimport';
 }
 
 .container {
@@ -29,8 +34,11 @@ body {
 }
 
 h1 {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 300;
+    font-family: 'kashmirimport';
+    font-weight: 600;
+    color: red;
+    background-color: black;
+    padding: 15px;
 }
 
 /*
@@ -89,6 +97,9 @@ h1 {
     text-align: left;
     width: 345px;
     margin-bottom: 10px;
+    color: red;
+    background-color: black;
+    padding: 15px;
 }
 
 .score-panel .stars {

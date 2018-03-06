@@ -99,7 +99,7 @@ function checkCard() {
         timer();
         timerRunning = true;
         var music = document.getElementById("music");
-        music.currentTime = 180;
+        music.currentTime = 180.175;
     }
 
     if (!cardOne) {
@@ -149,9 +149,8 @@ function checkCard() {
         if (matchedCount === 2) {
             clearTimeout(t);
             $('#No1modal').modal('show');
-            alert ("You won!")
-            //var music = document.getElementById("music");
-            //music.currentTime = 410;
+            var music = document.getElementById("music");
+            music.currentTime = 395.5;
         }
         console.log('Total matches ' + matchedCount)
     } else {
