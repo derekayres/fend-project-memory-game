@@ -148,6 +148,9 @@ function checkCard() {
         matchedCount += 1;
         if (matchedCount === 2) {
             clearTimeout(t);
+            document.getElementsByClassName('modal-moves')[0].innerHTML = moveCount;
+            document.getElementsByClassName('modal-time')[0].innerHTML = moveCount;
+            document.getElementsByClassName('modal-stars')[0].innerHTML = moveCount;
             $('#No1modal').modal('show');
             var music = document.getElementById("music");
             music.currentTime = 395.5;
