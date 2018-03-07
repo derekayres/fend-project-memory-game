@@ -149,7 +149,7 @@ function checkCard() {
         if (matchedCount === 2) {
             clearTimeout(t);
             document.getElementsByClassName('modal-moves')[0].innerHTML = moveCount;
-            document.getElementsByClassName('modal-time')[0].innerHTML = moveCount;
+            document.getElementsByClassName('modal-time')[0].innerHTML = h2;
             document.getElementsByClassName('modal-stars')[0].innerHTML = moveCount;
             $('#No1modal').modal('show');
             var music = document.getElementById("music");
