@@ -92,7 +92,7 @@ function makeCards(shuffledArray) {
 let timerRunning = false;
 let matchedCount = 0;
 let moveCount = 0;
-let starCount = 3;
+let starCount = 5;
 
 
 
@@ -123,12 +123,16 @@ function checkCard() {
         document.getElementsByTagName('span')[0].innerHTML = moveCount;
         if (moveCount > 8 && moveCount < 13) {
             document.getElementsByClassName('fa fa-star')[4].style.visibility = 'hidden';
+            starCount -= 1;
         } else if (moveCount > 12 && moveCount < 17) {
             document.getElementsByClassName('fa fa-star')[3].style.visibility = 'hidden';
+            starCount -= 1;
         } else if (moveCount > 16 && moveCount < 21) {
             document.getElementsByClassName('fa fa-star')[2].style.visibility = 'hidden';
+            starCount -= 1;
         } else if (moveCount > 20 && moveCount < 25) {
             document.getElementsByClassName('fa fa-star')[1].style.visibility = 'hidden';
+            starCount -= 1;
         }
 
         if (cardOne.firstChild.className === cardTwo.firstChild.className) {
@@ -154,6 +158,7 @@ function checkCard() {
                 $('#No1modal').modal('show');
                 var music = document.getElementById("music");
                 music.currentTime = 395.5;
+                console.log(starCount)
             }
             console.log('Total matches ' + matchedCount)
         } else {
@@ -172,6 +177,7 @@ function checkCard() {
 }
 console.log('It worked.')
 console.dir(this)
+
 
 makeCards(shuffledArray);
 
