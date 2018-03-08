@@ -92,6 +92,10 @@ function makeCards(shuffledArray) {
 let timerRunning = false;
 let matchedCount = 0;
 let moveCount = 0;
+let starCount = 3;
+
+
+
 //let moves = document.getElementsByClassName('moves');
 
 function checkCard() {
@@ -103,89 +107,73 @@ function checkCard() {
     }
 
     if (!cardOne) {
-      cardOne = this;
-      cardOne.removeEventListener('click', checkCard);
-      cardOne.classList.add('open');
-      cardOne.classList.add('show');
-      moveCount += 0.5;
-      return false;
+        cardOne = this;
+        cardOne.removeEventListener('click', checkCard);
+        cardOne.classList.add('open');
+        cardOne.classList.add('show');
+        moveCount += 0.5;
+        return false;
     } else if (!cardTwo) {
-      cardTwo = this;
-      cardTwo.removeEventListener('click', checkCard);
-      cardTwo.classList.add('open');
-      cardTwo.classList.add('show');
-      moveCount += 0.5;
-      console.log('Total moves ' + moveCount);
-      document.getElementsByTagName('span')[0].innerHTML = moveCount;
-    if (moveCount > 8 && moveCount < 13) {
-       document.getElementsByClassName('fa fa-star')[4].style.visibility='hidden';
-     } else if (moveCount > 12 && moveCount < 17) {
-        document.getElementsByClassName('fa fa-star')[4].style.visibility='hidden';
-        document.getElementsByClassName('fa fa-star')[3].style.visibility='hidden';
-      } else if (moveCount > 16 && moveCount < 21) {
-        document.getElementsByClassName('fa fa-star')[4].style.visibility='hidden';
-        document.getElementsByClassName('fa fa-star')[3].style.visibility='hidden';
-        document.getElementsByClassName('fa fa-star')[2].style.visibility='hidden';
-      } else if (moveCount > 20 && moveCount < 25) {
-        document.getElementsByClassName('fa fa-star')[4].style.visibility='hidden';
-        document.getElementsByClassName('fa fa-star')[3].style.visibility='hidden';
-        document.getElementsByClassName('fa fa-star')[2].style.visibility='hidden';
-        document.getElementsByClassName('fa fa-star')[1].style.visibility='hidden';
-      }
-
-
-
-
-    if (cardOne.firstChild.className === cardTwo.firstChild.className) {
-        cardTwo.classList.add('match');
-        cardTwo.classList.remove('open');
-        cardTwo.classList.remove('show');
-        cardOne.classList.add('match');
-        cardOne.classList.remove('open');
-        cardOne.classList.remove('show');
-        cardOne = null;
-        cardTwo = null;
-        matchedCount += 1;
-        if (matchedCount === 2) {
-            clearTimeout(t);
-            document.getElementsByClassName('modal-moves')[0].innerHTML = moveCount;
-            document.getElementsByClassName('modal-time')[0].innerHTML = h2;
-            document.getElementsByClassName('modal-stars')[0].innerHTML = moveCount;
-            $('#No1modal').modal('show');
-            var music = document.getElementById("music");
-            music.currentTime = 395.5;
+        cardTwo = this;
+        cardTwo.removeEventListener('click', checkCard);
+        cardTwo.classList.add('open');
+        cardTwo.classList.add('show');
+        moveCount += 0.5;
+        console.log('Total moves ' + moveCount);
+        document.getElementsByTagName('span')[0].innerHTML = moveCount;
+        if (moveCount > 8 && moveCount < 13) {
+            document.getElementsByClassName('fa fa-star')[4].style.visibility = 'hidden';
+        } else if (moveCount > 12 && moveCount < 17) {
+            document.getElementsByClassName('fa fa-star')[3].style.visibility = 'hidden';
+        } else if (moveCount > 16 && moveCount < 21) {
+            document.getElementsByClassName('fa fa-star')[2].style.visibility = 'hidden';
+        } else if (moveCount > 20 && moveCount < 25) {
+            document.getElementsByClassName('fa fa-star')[1].style.visibility = 'hidden';
         }
-        console.log('Total matches ' + matchedCount)
-    } else {
-        setTimeout(function() {
-            cardTwo.addEventListener('click', checkCard);
+
+        if (cardOne.firstChild.className === cardTwo.firstChild.className) {
+            cardTwo.classList.add('match');
             cardTwo.classList.remove('open');
             cardTwo.classList.remove('show');
-            cardOne.addEventListener('click', checkCard);
+            cardOne.classList.add('match');
             cardOne.classList.remove('open');
             cardOne.classList.remove('show');
             cardOne = null;
             cardTwo = null;
-        }, 2000);
+            matchedCount += 1;
+            if (matchedCount === 2) {
+                clearTimeout(t);
+                for (let s = 0; s < starCount; s++) {
+                    const modalStar = document.createElement('i');
+                    modalStar.classList.add('fa', 'fa-star');
+                    document.getElementsByClassName('modal-stars')[0].appendChild(modalStar);
+                }
+                document.getElementsByClassName('modal-moves')[0].innerHTML = moveCount;
+                document.getElementsByClassName('modal-time')[0].innerHTML = h2.textContent;
+                //document.getElementsByClassName('modal-stars')[0].innerHTML = modalStar;
+                $('#No1modal').modal('show');
+                var music = document.getElementById("music");
+                music.currentTime = 395.5;
+            }
+            console.log('Total matches ' + matchedCount)
+        } else {
+            setTimeout(function() {
+                cardTwo.addEventListener('click', checkCard);
+                cardTwo.classList.remove('open');
+                cardTwo.classList.remove('show');
+                cardOne.addEventListener('click', checkCard);
+                cardOne.classList.remove('open');
+                cardOne.classList.remove('show');
+                cardOne = null;
+                cardTwo = null;
+            }, 2000);
+        }
     }
-  }
 }
 console.log('It worked.')
 console.dir(this)
 
 makeCards(shuffledArray);
-
-
-/* Stop button
-stop.onclick = function() {
-    clearTimeout(t);
-}
-Clear button
-clear.onclick = function() {
-    h1.textContent = "00:00:00";
-    seconds = 0; minutes = 0; hours = 0;
-}
-*/
 
 
 
