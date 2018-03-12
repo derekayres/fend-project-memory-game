@@ -21,7 +21,7 @@ const arrayClassNames = [
 ]
 
 //calling HTML for timer
-var h2 = document.getElementsByTagName('h2')[0],
+let h2 = document.getElementsByTagName('h2')[0],
     seconds = 0,
     minutes = 0,
     hours = 0,
@@ -94,7 +94,16 @@ let matchedCount = 0;
 let moveCount = 0;
 let starCount = 5;
 
+const resetEverything = document.getElementsByClassName('fa fa-repeat')[0];
 
+resetEverything.addEventListener('click', resetGame);
+function resetGame() {
+  window.moveCount = 0;
+  window.starCount = 5;
+  makeCards(shuffledArray);
+  //location.reload();
+  console.log('Page is reloaded.')
+}
 
 //let moves = document.getElementsByClassName('moves');
 
@@ -111,28 +120,27 @@ function checkCard() {
         cardOne.removeEventListener('click', checkCard);
         cardOne.classList.add('open');
         cardOne.classList.add('show');
-        moveCount += 0.5;
         return false;
     } else if (!cardTwo) {
         cardTwo = this;
         cardTwo.removeEventListener('click', checkCard);
         cardTwo.classList.add('open');
         cardTwo.classList.add('show');
-        moveCount += 0.5;
+        moveCount += 1;
         console.log('Total moves ' + moveCount);
         document.getElementsByTagName('span')[0].innerHTML = moveCount;
         if (moveCount > 8 && moveCount < 13) {
             document.getElementsByClassName('fa fa-star')[4].style.visibility = 'hidden';
-            starCount -= 1;
+            starCount = 4;
         } else if (moveCount > 12 && moveCount < 17) {
             document.getElementsByClassName('fa fa-star')[3].style.visibility = 'hidden';
-            starCount -= 1;
+            starCount = 3;
         } else if (moveCount > 16 && moveCount < 21) {
             document.getElementsByClassName('fa fa-star')[2].style.visibility = 'hidden';
-            starCount -= 1;
-        } else if (moveCount > 20 && moveCount < 25) {
+            starCount = 2;
+        } else if (moveCount > 20) {
             document.getElementsByClassName('fa fa-star')[1].style.visibility = 'hidden';
-            starCount -= 1;
+            starCount = 1;
         }
 
         if (cardOne.firstChild.className === cardTwo.firstChild.className) {

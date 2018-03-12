@@ -3,6 +3,11 @@
   src:url("kashmir.ttf");
 }
 
+@font-face {
+  font-family: zeppelinimport;
+  src:url("zeppelin.ttf");
+}
+
 html {
     box-sizing: border-box;
 }
@@ -41,6 +46,11 @@ h1 {
     padding: 15px;
 }
 
+h4 {
+    font-family: 'zeppelinimport';
+    font-weight: normal;
+    color: red;
+}
 /*
  * Styles for the deck of cards
  */
@@ -48,7 +58,7 @@ h1 {
 .deck {
     width: 660px;
     min-height: 680px;
-    background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
+    background: linear-gradient(1deg, red 0%, black 100%);
     padding: 32px;
     border-radius: 10px;
     box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
