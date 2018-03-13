@@ -1,6 +1,6 @@
-/*
- * Create a list that holds all of your cards
- */
+//VARIABLES.
+
+//List of all cards.
 const arrayClassNames = [
     "fa fa-diamond",
     "fa fa-diamond",
@@ -20,13 +20,29 @@ const arrayClassNames = [
     "fa fa-bomb"
 ]
 
-//calling HTML for timer
+const deck = document.querySelector(".deck");
+const newDeck = document.querySelector('.deck');
+const resetEverything = document.getElementsByClassName('fa fa-repeat')[0];
+let timerRunning = false;
+let matchedCount = 0;
+let moveCount = 0;
+let starCount = 5;
+let cardOne = null;
+let cardTwo = null;
+
+//Calling HTML for the stopwatch.
 let h2 = document.getElementsByTagName('h2')[0],
     seconds = 0,
     minutes = 0,
     hours = 0,
     t;
 
+//Starts stopwatch.
+function timer() {
+        t = setTimeout(add, 1000);
+    }
+
+//Adds time to stopwatch.
 function add() {
     seconds++;
     if (seconds >= 60) {
@@ -41,24 +57,10 @@ function add() {
     timer();
 }
 
-function timer() {
-    t = setTimeout(add, 1000);
-}
-
-
-
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
-
-// Shuffle function from http://stackoverflow.com/a/2450976
+//Shuffles cards.
 function shuffle(array) {
     var currentIndex = array.length,
         temporaryValue, randomIndex;
-
     while (currentIndex !== 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex -= 1;
@@ -69,12 +71,7 @@ function shuffle(array) {
     return array;
 }
 
-
-const deck = document.querySelector(".deck");
-const newDeck = document.querySelector('.deck');
-let cardOne = null;
-let cardTwo = null;
-
+//Makes cards. Calls the shuffle function.
 function makeCards() {
     let shuffledArray = shuffle(arrayClassNames);
     deck.innerHTML = "";
@@ -90,43 +87,8 @@ function makeCards() {
         newCard.addEventListener('click', checkCard);
     }
 }
-let timerRunning = false;
-let matchedCount = 0;
-let moveCount = 0;
-let starCount = 5;
 
-const resetEverything = document.getElementsByClassName('fa fa-repeat')[0];
-
-resetEverything.addEventListener('click', resetGame);
-function resetGame() {
-  moveCount = 0;
-
-  clearTimeout(t);
-//  timerRunning = false;
-//  document.getElementsByTagName('h2')[0].timerRunning = false;
-  document.getElementsByTagName('h2')[0],
-      seconds = 0,
-      minutes = 0,
-      hours = 0,
-      t;
-  h2.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
-
-  document.getElementsByTagName('span')[0].innerHTML = moveCount;
-  document.getElementsByClassName('fa fa-star')[4].style.visibility = 'visible';
-  document.getElementsByClassName('fa fa-star')[3].style.visibility = 'visible';
-  document.getElementsByClassName('fa fa-star')[2].style.visibility = 'visible';
-  document.getElementsByClassName('fa fa-star')[1].style.visibility = 'visible';
-  document.getElementsByClassName('fa fa-star')[0].style.visibility = 'visible';
-  shuffledArray = shuffle(arrayClassNames);
-  makeCards(shuffledArray);
-  music.currentTime = 0;
-//location.reload();
-  console.log('Page is reloaded.')
-  return false
-}
-
-//let moves = document.getElementsByClassName('moves');
-
+//Starts timer, sorts cards into card one or two, compares cards
 function checkCard() {
     if (timerRunning === false) {
         timer();
@@ -134,13 +96,14 @@ function checkCard() {
         var music = document.getElementById("music");
         music.currentTime = 180.175;
     }
-
+//The card is either cardOne...
     if (!cardOne) {
         cardOne = this;
         cardOne.removeEventListener('click', checkCard);
         cardOne.classList.add('open');
         cardOne.classList.add('show');
         return false;
+//...or cardTwo.
     } else if (!cardTwo) {
         cardTwo = this;
         cardTwo.removeEventListener('click', checkCard);
@@ -149,6 +112,7 @@ function checkCard() {
         moveCount += 1;
         console.log('Total moves ' + moveCount);
         document.getElementsByTagName('span')[0].innerHTML = moveCount;
+//Denumerates number of stars the moves you make.
         if (moveCount > 8 && moveCount < 13) {
             document.getElementsByClassName('fa fa-star')[4].style.visibility = 'hidden';
             starCount = 4;
@@ -162,7 +126,7 @@ function checkCard() {
             document.getElementsByClassName('fa fa-star')[1].style.visibility = 'hidden';
             starCount = 1;
         }
-
+//If there is a match...
         if (cardOne.firstChild.className === cardTwo.firstChild.className) {
             cardTwo.classList.add('match');
             cardTwo.classList.remove('open');
@@ -173,7 +137,8 @@ function checkCard() {
             cardOne = null;
             cardTwo = null;
             matchedCount += 1;
-            if (matchedCount === 2) {
+//Defines the conditions for the win.            
+            if (matchedCount === 8) {
                 clearTimeout(t);
                 for (let s = 0; s < starCount; s++) {
                     const modalStar = document.createElement('i');
@@ -203,21 +168,30 @@ function checkCard() {
         }
     }
 }
-console.log('It worked.')
-console.dir(this)
 
+//Resets game.
+resetEverything.addEventListener('click', resetGame);
+function resetGame() {
+  moveCount = 0;
+  clearTimeout(t);
+  timerRunning = false;
+  document.getElementsByTagName('h2')[0],
+      seconds = 0,
+      minutes = 0,
+      hours = 0,
+      t;
+  h2.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+  document.getElementsByTagName('span')[0].innerHTML = moveCount;
+  document.getElementsByClassName('fa fa-star')[4].style.visibility = 'visible';
+  document.getElementsByClassName('fa fa-star')[3].style.visibility = 'visible';
+  document.getElementsByClassName('fa fa-star')[2].style.visibility = 'visible';
+  document.getElementsByClassName('fa fa-star')[1].style.visibility = 'visible';
+  document.getElementsByClassName('fa fa-star')[0].style.visibility = 'visible';
+  shuffledArray = shuffle(arrayClassNames);
+  makeCards(shuffledArray);
+  music.currentTime = 0;
+  console.log('Page is reloaded.')
+  return false
+}
 
 makeCards();
-
-
-
-/*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */

@@ -44,6 +44,7 @@ h1 {
     color: red;
     background-color: black;
     padding: 15px;
+    box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
 }
 
 h4 {
@@ -72,7 +73,7 @@ h4 {
 .deck .card {
     height: 125px;
     width: 125px;
-    background: #2e3d49;
+    background: url('../img/LedZeppelin.png');
     font-size: 0;
     color: #ffffff;
     border-radius: 8px;
@@ -85,7 +86,7 @@ h4 {
 
 .deck .card.open {
     transform: rotateY(0);
-    background: url('../img/LedZeppelin.png');
+    background: #2e3d49;
     cursor: default;
 }
 
@@ -95,7 +96,7 @@ h4 {
 
 .deck .card.match {
     cursor: default;
-    background: #02ccba;
+    background: linear-gradient(1deg, red 0%, black 100%);
     font-size: 33px;
 }
 
@@ -110,6 +111,7 @@ h4 {
     color: red;
     background-color: black;
     padding: 15px;
+    box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
 }
 
 .score-panel .stars {
@@ -128,3 +130,13 @@ h4 {
     float: right;
     cursor: pointer;
 }
+
+/*
+ * Style for modal image.
+ */
+
+ .img-responsive {
+   display: block;
+   max-width: 100%;
+   height: auto;
+ }

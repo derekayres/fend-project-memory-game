@@ -1,20 +1,19 @@
-# Memory Game Project
+Front-End Web Developer Nanodegree Program
+Project: Memory Game
+Build your own version of the classic memory game 'Concentration', using JavaScript, DOM selectors and Event Listeners.
 
-## Table of Contents
+Led Zeppelin Cover Concentration
 
-* [Instructions](#instructions)
-* [Contributing](#contributing)
+How to play:
+  Game shows cards for 2 secs then hides 'em
+  Timer starts once a card is clicked
+  Click 2 cards to reveal 'em:
+    if cards match, the stay shown
+    if cards dont match, they flip back hidden
+    Match all cards to win.
 
-## Instructions
-
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
-
-To get started, open `js/app.js` and start building out the app's functionality
-
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
-
-## Contributing
-
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+Code Dependencies:
+  kashmir.ttf
+  zeppelin.ttf
+  InTheLight.mpeg
+  app.js
