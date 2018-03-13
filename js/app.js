@@ -2,22 +2,22 @@
 
 //List of all cards.
 const arrayClassNames = [
-    "fa fa-diamond",
-    "fa fa-diamond",
-    "fa fa-paper-plane-o",
-    "fa fa-paper-plane-o",
-    "fa fa-anchor",
-    "fa fa-anchor",
-    "fa fa-bolt",
-    "fa fa-bolt",
-    "fa fa-cube",
-    "fa fa-cube",
-    "fa fa-leaf",
-    "fa fa-leaf",
-    "fa fa-bicycle",
-    "fa fa-bicycle",
-    "fa fa-bomb",
-    "fa fa-bomb"
+  url('../img/LedZeppelin.png'),
+  url('../img/LedZeppelin.png'),
+  url('../img/Led Zeppelin II front.png'),
+  url('../img/Led Zeppelin II front.png'),
+  url('../img/Led Zeppelin III front.png'),
+  url('../img/Led Zeppelin III front.png'),
+  url('../img/Led Zeppelin IV front.png'),
+  url('../img/Led Zeppelin IV front.png'),
+  url('../img/Physical Graffiti front.png'),
+  url('../img/Physical Graffiti front.png'),
+  url('../img/Houses of the Holy front.png'),
+  url('../img/Houses of the Holy front.png'),
+  url('../img/Presence front.png'),
+  url('../img/Presence front.png'),
+  url('../img/In Through the Out Door.png'),
+  url('../img/In Through the Out Door.png'),
 ]
 
 const deck = document.querySelector(".deck");
@@ -137,7 +137,7 @@ function checkCard() {
             cardOne = null;
             cardTwo = null;
             matchedCount += 1;
-//Defines the conditions for the win.            
+//Defines the conditions for the win.
             if (matchedCount === 8) {
                 clearTimeout(t);
                 for (let s = 0; s < starCount; s++) {

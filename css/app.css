@@ -27,7 +27,7 @@ body {
 }
 
 body {
-    background: #ffffff url('../img/glyphs.png'); /* Background pattern from Subtle Patterns */
+    background: #ffffff url('../img/glyphs.png'); /* Background Zeppelin glyphs */
     font-family: 'kashmirimport';
 }
 
@@ -73,7 +73,7 @@ h4 {
 .deck .card {
     height: 125px;
     width: 125px;
-    background: url('../img/LedZeppelin.png');
+    background: grey;
     font-size: 0;
     color: #ffffff;
     border-radius: 8px;
