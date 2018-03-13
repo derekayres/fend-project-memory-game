@@ -69,13 +69,14 @@ function shuffle(array) {
     return array;
 }
 
-const shuffledArray = shuffle(arrayClassNames);
+
 const deck = document.querySelector(".deck");
 const newDeck = document.querySelector('.deck');
 let cardOne = null;
 let cardTwo = null;
 
-function makeCards(shuffledArray) {
+function makeCards() {
+    let shuffledArray = shuffle(arrayClassNames);
     deck.innerHTML = "";
     for (let x = 0; x < shuffledArray.length; x++) {
         const newCard = document.createElement('li');
@@ -98,11 +99,30 @@ const resetEverything = document.getElementsByClassName('fa fa-repeat')[0];
 
 resetEverything.addEventListener('click', resetGame);
 function resetGame() {
-  window.moveCount = 0;
-  window.starCount = 5;
+  moveCount = 0;
+
+  clearTimeout(t);
+//  timerRunning = false;
+//  document.getElementsByTagName('h2')[0].timerRunning = false;
+  document.getElementsByTagName('h2')[0],
+      seconds = 0,
+      minutes = 0,
+      hours = 0,
+      t;
+  h2.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+
+  document.getElementsByTagName('span')[0].innerHTML = moveCount;
+  document.getElementsByClassName('fa fa-star')[4].style.visibility = 'visible';
+  document.getElementsByClassName('fa fa-star')[3].style.visibility = 'visible';
+  document.getElementsByClassName('fa fa-star')[2].style.visibility = 'visible';
+  document.getElementsByClassName('fa fa-star')[1].style.visibility = 'visible';
+  document.getElementsByClassName('fa fa-star')[0].style.visibility = 'visible';
+  shuffledArray = shuffle(arrayClassNames);
   makeCards(shuffledArray);
-  //location.reload();
+  music.currentTime = 0;
+//location.reload();
   console.log('Page is reloaded.')
+  return false
 }
 
 //let moves = document.getElementsByClassName('moves');
@@ -187,7 +207,7 @@ console.log('It worked.')
 console.dir(this)
 
 
-makeCards(shuffledArray);
+makeCards();
 
 
 
