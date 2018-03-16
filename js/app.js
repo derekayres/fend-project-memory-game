@@ -74,12 +74,12 @@ function shuffle(array) {
 //Makes cards. Calls the shuffle function.
 function makeCards() {
     let shuffledArray = shuffle(arrayClassNames);
-    newCard.cover = shuffledArray[x];
-    cardOne.style.backgroundImage = cardOne.cover;
+
     deck.innerHTML = "";
     for (let x = 0; x < shuffledArray.length; x++) {
         const newCard = document.createElement('li');
         const newIcon = document.createElement('i');
+        newCard.cover = shuffledArray[x];
         newCard.classList.add('card');
         newIcon.classList.add('fa');
         newIcon.classList = shuffledArray[x];
@@ -102,6 +102,7 @@ function checkCard() {
     if (!cardOne) {
         cardOne = this;
         cardOne.removeEventListener('click', checkCard);
+        cardOne.style.backgroundImage = cardOne.cover;
         cardOne.classList.add('open');
         cardOne.classList.add('show');
         return false;
@@ -109,6 +110,7 @@ function checkCard() {
     } else if (!cardTwo) {
         cardTwo = this;
         cardTwo.removeEventListener('click', checkCard);
+        cardTwo.style.backgroundImage = cardTwo.cover;
         cardTwo.classList.add('open');
         cardTwo.classList.add('show');
         moveCount += 1;
