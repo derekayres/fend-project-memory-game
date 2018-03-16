@@ -2,22 +2,22 @@
 
 //List of all cards.
 const arrayClassNames = [
-  url('../img/LedZeppelin.png'),
-  url('../img/LedZeppelin.png'),
-  url('../img/Led Zeppelin II front.png'),
-  url('../img/Led Zeppelin II front.png'),
-  url('../img/Led Zeppelin III front.png'),
-  url('../img/Led Zeppelin III front.png'),
-  url('../img/Led Zeppelin IV front.png'),
-  url('../img/Led Zeppelin IV front.png'),
-  url('../img/Physical Graffiti front.png'),
-  url('../img/Physical Graffiti front.png'),
-  url('../img/Houses of the Holy front.png'),
-  url('../img/Houses of the Holy front.png'),
-  url('../img/Presence front.png'),
-  url('../img/Presence front.png'),
-  url('../img/In Through the Out Door.png'),
-  url('../img/In Through the Out Door.png'),
+  "url('./img/LedZeppelin.png')",
+  "url('./img/LedZeppelin.png')",
+  "url('./img/Led Zeppelin II front.png')",
+  "url('./img/Led Zeppelin II front.png')",
+  "url('./img/Led Zeppelin III front.png')",
+  "url('./img/Led Zeppelin III front.png')",
+  "url('./img/Led Zeppelin IV front.png')",
+  "url('../img/Led Zeppelin IV front.png')",
+  "url('./img/Physical Graffiti front.png')",
+  "url('../img/Physical Graffiti front.png')",
+  "url('./img/Houses of the Holy front.png')",
+  "url('../img/Houses of the Holy front.png')",
+  "url('./img/Presence front.png')",
+  "url('../img/Presence front.png')",
+  "url('./img/In Through the Out Door.png')",
+  "url('../img/In Through the Out Door.png')",
 ]
 
 const deck = document.querySelector(".deck");
@@ -74,6 +74,8 @@ function shuffle(array) {
 //Makes cards. Calls the shuffle function.
 function makeCards() {
     let shuffledArray = shuffle(arrayClassNames);
+    newCard.cover = shuffledArray[x];
+    cardOne.style.backgroundImage = cardOne.cover;
     deck.innerHTML = "";
     for (let x = 0; x < shuffledArray.length; x++) {
         const newCard = document.createElement('li');
