@@ -1,11 +1,11 @@
 @font-face {
   font-family: kashmirimport;
-  src:url("kashmir.ttf");
+  src:url("./kashmir.ttf");
 }
 
 @font-face {
   font-family: zeppelinimport;
-  src:url("zeppelin.ttf");
+  src:url("./zeppelin.ttf");
 }
 
 html {
