@@ -11,13 +11,13 @@ const arrayClassNames = [
   "url('./img/Led-Zeppelin-IV.png')",
   "url('./img/Led-Zeppelin-IV.png')",
   "url('./img/Physical-Graffiti.png')",
-  "url('../img/Physical-Graffiti.png')",
+  "url('./img/Physical-Graffiti.png')",
   "url('./img/Houses-of-the-Holy.png')",
-  "url('../img/Houses-of-the-Holy.png')",
+  "url('./img/Houses-of-the-Holy.png')",
   "url('./img/Presence.png')",
-  "url('../img/Presence.png')",
+  "url('./img/Presence.png')",
   "url('./img/In-Through-the-Out-Door.png')",
-  "url('../img/In-Through-the-Out-Door.png')",
+  "url('./img/In-Through-the-Out-Door.png')",
 ]
 
 const deck = document.querySelector(".deck");
@@ -163,11 +163,11 @@ function checkCard() {
                 cardTwo.addEventListener('click', checkCard);
                 cardTwo.classList.remove('open');
                 cardTwo.classList.remove('show');
-                cardTwo.style.backgroundImage = none;
+                cardTwo.style.backgroundImage = 'none';
                 cardOne.addEventListener('click', checkCard);
                 cardOne.classList.remove('open');
                 cardOne.classList.remove('show');
-                cardOne.style.backgroundImage = none;
+                cardOne.style.backgroundImage = 'none';
                 cardOne = null;
                 cardTwo = null;
             }, 2000);
@@ -178,6 +178,7 @@ function checkCard() {
 //Resets game.
 resetEverything.addEventListener('click', resetGame);
 function resetGame() {
+  matchedCount = 0;
   moveCount = 0;
   clearTimeout(t);
   timerRunning = false;
